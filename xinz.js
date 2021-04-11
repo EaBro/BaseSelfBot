@@ -25,6 +25,8 @@ const speed = require('performance-now');
 const ffmpeg = require('fluent-ffmpeg');
 const conn = require('./whatsapp/connect');
 const { color } = require('./lib/color');
+const imageToBase64 = require('image-to-base64');
+const { removeBackgroundFromImageFile } = require('remove.bg')
 const mess = JSON.parse(fs.readFileSync('./whatsapp/mess.json'));
 const axios = require('axios');
 const Exif = require('./lib/exif');
@@ -74,6 +76,19 @@ xinz.on('message-new', async(qul) => {
 		const isUrl = (url) => {
 			return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
 		}
+const fakeea = (teks) => {
+            aqul.sendMessage(from, teks, text, {
+                quoted: {
+                    key: {
+                        fromMe: false,
+                        participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289523258649-1604595598@g.us" } : {})
+                    },
+                    message: {
+                        conversation: fake
+                    }
+                }
+            })
+        }
 
         const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 		const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
@@ -312,16 +327,32 @@ More? rakit sendirilah`
 				aqul.sendMessage('status@broadcast', `${q}`, extendedText)
 				reply(`Done Up Status: ${q}`)
 				break
-case 'imgtourl':
-                    if (!isQuotedImage) return aqul.sendMessage(from, mess.wrongFormat)
+case 'toimg'://eabro
+                    {
+                        if (!isQuotedSticker) return fakegroup(`Reply stickernya kaka`)
+                        fakeea(mess.wait)
+                        encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+                        media = await aqul.downloadAndSaveMediaMessage(encmedia)
+                        ran = getRandom('.png')
+                        exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+                            fs.unlinkSync(media)
+                            if (err) return fakeea(`Err: ${err}`)
+                            bufferi9nn = fs.readFileSync(ran)
+                            aqul.sendMessage(from, bufferi9nn, image, { caption: 'Done bruhh..' })
+                            fs.unlinkSync(ran)
+                        });
+                    }
+                    break
+case 'imgtourl'://eabro
+                    if (!isQuotedImage) return fakeea(mess.wrongFormat)
                     var imgbb = require('imgbb-uploader')
                     if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                         gerwd22 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
                         reply(mess.wait)
-                        owgie3d = await client.downloadAndSaveMediaMessage(gerwd22)
+                        owgie3d = await aqul.downloadAndSaveMediaMessage(gerwd22)
                         anuc3cd = await imgbb("08579d070df9a07cb1c2ee565aece767", owgie3d)
                         teksd3j = `${anuc3cd.display_url}`
-                        aqul.sendFakeStatus(from, fake, teksd3j)
+                        fakeea(teksd3j)
                     }
                     break
 case 'brainly'://EaBro
