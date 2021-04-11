@@ -136,7 +136,7 @@ No prefix
 => ${prefix}kick
 => ${prefix}add
 => ${prefix}brainly
-
+=> ${fitnah} pesan|isi|pesan2
 More? rakit sendirilah`
 				aqul.sendFakeStatusWithImg(from, fakeimage, textnya, fake)
 				break
@@ -332,6 +332,20 @@ case 'brainly'://EaBro
                 aqul.reply(from, 'Usage :\n!brainly [pertanyaan] [.jumlah]\n\nEx : \n!brainly NKRI .2', id)
             }
             break
+case 'setgrupicon'://eabro
+            if (!isGroupAdmins) return aqul.reply(from, 'Perintah ini hanya bisa di gunakan oleh Admin group!', id)
+            if (!isBotGroupAdmins) return aqul.reply(from, 'Perintah ini hanya bisa di gunakan ketika bot menjadi admin', id)
+            const mediaDatas1 = await decryptMedia (message)
+            const imageBase641 = `data:${mimetype};base64,${mediaDatas1.toString('base64')}`
+            await aqul.setGroupIcon(from, imageBase641)
+            aqul.reply(from, 'Succes To Change Icon!')
+            break
+case 'fitnah':	
+				case 'fake':          
+if (!isGroup) return reply(mess.only.group)
+arg = body.slice[11]
+costum(pesan, isi, pesan2)
+break
 			case 'hidetag':
 				if (!arg) return aqul.reply(from, `Penggunaan ${prefix}hidetag teks`, qul)
 				aqul.hideTag(from, arg)
