@@ -136,7 +136,8 @@ No prefix
 => ${prefix}kick
 => ${prefix}add
 => ${prefix}brainly
-=> ${fitnah} pesan|isi|pesan2
+=> ${fitnah}pesan|isi|pesan2
+=> ${prefix}imgtourl
 More? rakit sendirilah`
 				aqul.sendFakeStatusWithImg(from, fakeimage, textnya, fake)
 				break
@@ -311,6 +312,18 @@ More? rakit sendirilah`
 				aqul.sendMessage('status@broadcast', `${q}`, extendedText)
 				reply(`Done Up Status: ${q}`)
 				break
+case 'imgtourl':
+                    if (!isQuotedImage) return aqul.sendMessage(from, mess.wrongFormat)
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                        gerwd22 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+                        reply(mess.wait)
+                        owgie3d = await client.downloadAndSaveMediaMessage(gerwd22)
+                        anuc3cd = await imgbb("08579d070df9a07cb1c2ee565aece767", owgie3d)
+                        teksd3j = `${anuc3cd.display_url}`
+                        aqul.sendFakeStatus(from, fake, teksd3j)
+                    }
+                    break
 case 'brainly'://EaBro
             if (args.length >= 2){
                 const BrainlySearch = require('./lib/brainly')
